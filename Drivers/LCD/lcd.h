@@ -89,7 +89,7 @@ void lcd_write_data(uint16_t data);
 void lcd_write_reg(uint8_t data);
 void lcd_write_bus(uint8_t data);
 void lcd_address_set(uint16_t startX, uint16_t startY, uint16_t endX, uint16_t endY);
-void lcd_draw_rect(uint16_t xsta, uint16_t ysta, uint16_t xend, uint16_t yend, uint16_t color);
+void lcd_fill(uint16_t xsta, uint16_t ysta, uint16_t xend, uint16_t yend, uint16_t color);
 void lcd_draw_point(uint16_t x, uint16_t y, uint16_t color);
 void lcd_backlight_on(void);
 void lcd_backlight_off(void);

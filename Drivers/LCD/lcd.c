@@ -170,7 +170,7 @@ void lcd_address_set(uint16_t startX, uint16_t startY, uint16_t endX, uint16_t e
     lcd_write_reg(0x2C);
 }
 
-void lcd_draw_rect(uint16_t xsta, uint16_t ysta, uint16_t xend, uint16_t yend, uint16_t color)
+void lcd_fill(uint16_t xsta, uint16_t ysta, uint16_t xend, uint16_t yend, uint16_t color)
 {
     uint16_t i, j;
     lcd_address_set(xsta, ysta, xend - 1, yend - 1); // 设置显示范围
