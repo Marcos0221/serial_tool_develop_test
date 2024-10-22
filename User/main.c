@@ -16,7 +16,7 @@ int main(void)
 		
 	// ***** 驱动层初始化 *****
 	lcd_init();
-	lcd_draw_rect(0, 0, 100, 100, WHITE);
+	lcd_fill(0, 0, 240, 280, BLACK);
 
 	while(1){
 

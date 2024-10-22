@@ -94,5 +94,5 @@ void lcd_draw_point(uint16_t x, uint16_t y, uint16_t color);
 void lcd_backlight_on(void);
 void lcd_backlight_off(void);
 void lcd_draw_rect(uint16_t startX, uint16_t startY, uint16_t width, uint16_t height, uint16_t color);
-
+void lcd_show_char(uint16_t x,uint16_t y,uint8_t num,uint16_t fc,uint16_t bc,uint8_t sizey,uint8_t mode);
 #endif

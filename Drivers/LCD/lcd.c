@@ -1,6 +1,8 @@
 #include "lcd.h"
 #include "delay.h"
 #include "spi1.h"
+#include "lcdfont.h"
+#include "string.h"
 
 void lcd_init()
 {
@@ -211,4 +213,48 @@ void lcd_backlight_on()
 void lcd_backlight_off()
 {
 	GPIO_ResetBits(GPIOF, GPIO_Pin_6);
+}
+
+void lcd_show_char(uint16_t x,uint16_t y,uint8_t num,uint16_t fc,uint16_t bc,uint8_t sizey,uint8_t mode)
+{
+	uint8_t temp,sizex,t,m=0;
+	uint16_t i,TypefaceNum;//一个字符所占字节大小
+	uint16_t x0=x;
+	sizex=sizey/2;
+	TypefaceNum=(sizex/8+((sizex%8)?1:0))*sizey;
+	num=num-' ';    //得到偏移后的值
+	lcd_address_set(x,y,x+sizex-1,y+sizey-1);  //设置光标位置 
+	for(i=0;i<TypefaceNum;i++)
+	{ 
+		if(sizey==12)temp=ascii_1206[num][i];		       //调用6x12字体
+		else if(sizey==16)temp=ascii_1608[num][i];		 //调用8x16字体
+		else if(sizey==24)temp=ascii_2412[num][i];		 //调用12x24字体
+		else if(sizey==32)temp=ascii_3216[num][i];		 //调用16x32字体
+		else return;
+		for(t=0;t<8;t++)
+		{
+			if(!mode)//非叠加模式
+			{
+				if(temp&(0x01<<t))lcd_write_data(fc);
+				else lcd_write_data(bc);
+				m++;
+				if(m%sizex==0)
+				{
+					m=0;
+					break;
+				}
+			}
+			else//叠加模式
+			{
+				if(temp&(0x01<<t))lcd_draw_point(x,y,fc);//画一个点
+				x++;
+				if((x-x0)==sizex)
+				{
+					x=x0;
+					y++;
+					break;
+				}
+			}
+		}
+	}   	 	  
 }
