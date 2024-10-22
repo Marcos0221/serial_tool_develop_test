@@ -30,25 +30,18 @@ void usart1_init(uint32_t bound)
 	USART_Cmd(USART1, ENABLE); 
 }
 
-void usart_printf()
-{
-	
-}
-
-
 #if 1
-#pragma import(__use_no_semihosting)       /* 确保没有从 C 库链接使用半主机的函数 */               
+#pragma import(__use_no_semihosting) 
 struct __FILE 
 { 
-int handle; 
-
+	int handle; 
 }; 
 
 FILE __stdout;       
  
 void _sys_exit(int x) 
 { 
-x = x; 
+	x = x; 
 } 
 
 int fputc(int ch, FILE *f)

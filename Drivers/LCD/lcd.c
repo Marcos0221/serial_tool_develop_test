@@ -189,6 +189,13 @@ void lcd_draw_point(uint16_t x, uint16_t y, uint16_t color)
     lcd_write_data(color);
 }
 
+// 绘制矩形
+void lcd_draw_rect(uint16_t startX, uint16_t startY, uint16_t width, uint16_t height, uint16_t color)
+{
+	uint16_t endx=startX+width>=240?240:startX+width;
+	uint16_t endy=startY+height>=280?280:startY+height;
+	lcd_fill(startX, startY, endx, endy, color);
+}
 
 /**
  * 打开 LCD 背光

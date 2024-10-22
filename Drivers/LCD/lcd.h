@@ -93,5 +93,6 @@ void lcd_fill(uint16_t xsta, uint16_t ysta, uint16_t xend, uint16_t yend, uint16
 void lcd_draw_point(uint16_t x, uint16_t y, uint16_t color);
 void lcd_backlight_on(void);
 void lcd_backlight_off(void);
+void lcd_draw_rect(uint16_t startX, uint16_t startY, uint16_t width, uint16_t height, uint16_t color);
 
 #endif
